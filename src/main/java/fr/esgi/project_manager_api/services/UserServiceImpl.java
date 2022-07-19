@@ -1,0 +1,46 @@
+package fr.esgi.project_manager_api.services;
+
+import fr.esgi.project_manager_api.models.User;
+import fr.esgi.project_manager_api.repository.UserRepository;
+import lombok.AllArgsConstructor;
+import org.springframework.stereotype.Service;
+import java.util.List;
+
+@Service
+@AllArgsConstructor
+public class UserServiceImpl implements UserService{
+    private final UserRepository userRepository;
+
+    @Override
+    public User create(User user) {
+        return userRepository.save(user);
+    }
+
+    @Override
+    public List<User> readAll() {
+        return userRepository.findAll();
+    }
+
+    @Override
+    public User readById(int id) {
+        return userRepository.getById(id);
+    }
+
+    @Override
+    public User update(int id, User user) {
+        return userRepository.findById(id)
+                .map(u ->{
+                    u.setEmail(user.getEmail());
+                    u.setFirstname((user.getFirstname()));
+                    u.setLastname(user.getLastname());
+                    u.setPassword(user.getPassword());
+                    return userRepository.save(u);
+                }).orElseThrow(() -> new RuntimeException("Utilisateur inconnu."));
+    }
+
+    @Override
+    public void delete(int id) {
+        userRepository.delete(readById(id));
+        System.out.println("Utilisateur supprimé.");
+    }
+}
