@@ -1,5 +1,4 @@
 package fr.esgi.project_manager_api.models;
-import lombok.Data;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -14,9 +13,10 @@ import javax.persistence.*;
 public class Task {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    public int idtask;
-    public String name;
-    public String status;
-    public int idproject;
-    public int iduser;
+    private int idtask;
+    @Column(length = 100)
+    private String name;
+    private int status;
+    private int idproject;
+    private int iduser;
 }
