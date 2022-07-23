@@ -14,17 +14,9 @@ import javax.persistence.*;
 public class Task {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    public int idTask;
+    public int idtask;
     public String name;
     public String status;
-    public int idProject;
-    public int idUser;
-
-    public Task(int idTask, String name, String status, int idProject, int idUser) {
-        this.idTask = idTask;
-        this.name = name;
-        this.status = status;
-        this.idProject = idProject;
-        this.idUser = idUser;
-    }
+    public int idproject;
+    public int iduser;
 }
