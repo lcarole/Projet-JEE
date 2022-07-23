@@ -23,7 +23,7 @@ public class UserServiceImpl implements UserService{
 
     @Override
     public User readById(int id) {
-        return userRepository.getById(id);
+        return userRepository.getReferenceById(id);
     }
 
     @Override
@@ -39,8 +39,8 @@ public class UserServiceImpl implements UserService{
     }
 
     @Override
-    public void delete(int id) {
+    public String delete(int id) {
         userRepository.delete(readById(id));
-        System.out.println("Utilisateur supprimé.");
+        return "L'utilisateur a bien été supprimé.";
     }
 }

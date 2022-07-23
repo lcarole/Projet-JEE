@@ -9,5 +9,5 @@ public interface UserService {
     List<User> readAll();
     User readById(int id);
     User update(int id, User user);
-    void delete(int id);
+    String delete(int id);
 }

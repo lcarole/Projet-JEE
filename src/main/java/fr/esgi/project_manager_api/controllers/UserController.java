@@ -13,7 +13,7 @@ import java.util.List;
 public class UserController {
     private final UserService userService;
 
-    @PostMapping
+    @PostMapping("/create")
     public User create(@RequestBody User newUser){
         return userService.create(newUser);
     }
@@ -23,4 +23,13 @@ public class UserController {
         return userService.readAll();
     }
 
+    @GetMapping("/id")
+    public User getUser(@RequestParam Integer idUser){
+        return userService.readById(idUser);
+    }
+
+    @DeleteMapping("/delete")
+    public String delete(@RequestParam Integer id){
+        return userService.delete(id);
+    }
 }
